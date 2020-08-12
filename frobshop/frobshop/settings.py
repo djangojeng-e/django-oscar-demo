@@ -86,6 +86,14 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+OSCAR_INITIAL_ORDER_STATUS = 'pending'
+OSCAR_INITIAL_LINE_STATUS = 'pending'
+OSCAR_ORDER_STATUS_PIPELINE = {
+    'Pending': ('being processed', 'Cancelled',),
+    'Being processed': ('Processed', 'Cancelled',),
+    'Cancelled': (),
+}
+
 AUTHENTICATION_BACKENDS = (
     'oscar.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
